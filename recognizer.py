@@ -19,7 +19,7 @@ print('attendance till now is ')
 
 model=load_model('face_reco2.MODEL')
 
-cap=cv2.VideoCapture(1)
+cap=cv2.VideoCapture(0)
 ret=True
 
 while ret:
