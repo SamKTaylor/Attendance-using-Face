@@ -23,7 +23,7 @@ class Allign:
         dy=first_y-second_y
         angle=np.degrees(np.arctan2(dy,dx))-180
         print(angle)
-        #for i in range(68):
-            #cv2.circle(faces,(features.part(i).x,features.part(i).y),2,(255,0,0),-2)
-            #cv2.putText(faces,str(i),(features.part(i).x,features.part(i).y),cv2.FONT_HERSHEY_SIMPLEX,0.25,(0,255,0),1)
+        for i in range(68):
+            cv2.circle(faces,(features.part(i).x,features.part(i).y),2,(255,0,0),-2)
+            cv2.putText(faces,str(i),(features.part(i).x,features.part(i).y),cv2.FONT_HERSHEY_SIMPLEX,0.25,(0,255,0),1)
         return faces,angle

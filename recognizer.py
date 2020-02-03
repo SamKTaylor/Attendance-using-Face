@@ -3,19 +3,19 @@ from face_detection import face
 from keras.models import load_model
 import numpy as np
 from embedding import emb
-#from retreive_pymongo_data import database
+from retreive_pymongo_data import database
 
 
 label=None
 a={0:0,1:0}
 people={0:"satinder",1:"mont"}
 abhi=None
-#data=database()
+data=database()
 e=emb()
 fd=face()
 
 print('attendance till now is ')
-#data.view()
+data.view()
 
 model=load_model('face_reco2.MODEL')
 
@@ -33,7 +33,7 @@ while ret:
             k=coor[i]
             f=detected
             detected=cv2.resize(detected,(160,160))
-            #detected=np.rollaxis(detected,2,0)
+            detected=np.rollaxis(detected,2,0)
             detected=detected.astype('float')/255.0
             detected=np.expand_dims(detected,axis=0)
             feed=e.calculate(detected)
@@ -51,13 +51,13 @@ while ret:
                         abhi=i
             else:
                 label='unknown'
-            #data.update(label)
+            data.update(label)
 
 
             cv2.putText(frame,label,(k[0],k[1]),cv2.FONT_HERSHEY_SIMPLEX,1,(255,255,255),2)
-            #if(abhi is not None):
-                #if(a[abhi]==1):
-                    #cv2.putText(frame,"your attendance is complete",(x,y-30),cv2.FONT_HERSHEY_SIMPLEX,1,(255,255,255),2)
+            if(abhi is not None):
+                if(a[abhi]==1):
+                    cv2.putText(frame,"your attendance is complete",(200,30),cv2.FONT_HERSHEY_SIMPLEX,1,(255,255,255),2)
             cv2.rectangle(frame,(k[0],k[1]),(k[0]+k[2],k[1]+k[3]),(252,160,39),3)
             cv2.imshow('onlyFace',f)
     cv2.imshow('frame',frame)
