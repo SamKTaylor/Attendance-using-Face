@@ -4,7 +4,7 @@ import os
 pic_no=0
 print('enter the name of the person for enrollment')
 name=input()
-os.makedirs(name)
+os.makedirs(people/name)
 fa=cv2.CascadeClassifier('faces.xml')
 cap=cv2.VideoCapture(0)
 ret=True
@@ -23,7 +23,6 @@ while ret:
 
     if(pic_no>50):
     	break
-
 
 cap.release()
 cv2.destroyAllWindows()
