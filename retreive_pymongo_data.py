@@ -1,26 +1,27 @@
 from pymongo import MongoClient
+import datetime
 import pandas as pd
 class database:
     def __init__(self):
         self.client=MongoClient()
-        self.db1=self.client.users
+        self.db=self.client.users
         self.name=[]
         self.attendance=[]
 
-        self.db2=self.client.attendance
+        self.db2=self.client.timesheet
         self.userid=[]
         self.date=[]
 
-    def updateUser(self,name):
-        self.db1.pa.update_one({"name":name},{"$inc":{"attendance":1}})
+    def update(self,name):
+        self.db.pa.update_one({"name":name},{"$inc":{"attendance":1}})
 
     def updateAttendance(self,userid):
-        self.db2.timesheet.insertOne({"userid":abhi},{"date": datetime.datetime.now()})
+        self.db2.date.insert({"userid":userid, "date": datetime.datetime.now()})
 
     def view(self):
         self.name=[]
         self.attendance=[]
-        records=self.db1.pa.find()
+        records=self.db.pa.find()
         j=0
         for i in records:
             j=j+1

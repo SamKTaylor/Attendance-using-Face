@@ -8,9 +8,9 @@ from retreive_pymongo_data import database
 
 label=None
 # Removed old way of creating dict.
-#a={0:0,1:0}
+a={0:0,1:0}
 #people={0:"satinder",1:"mont"}
-
+#a={}
 # Get dict from file so you don't have to update source code for new users.
 people = {}
 with open("people.txt") as file:
@@ -43,7 +43,7 @@ while ret:
             k=coor[i]
             f=detected
             detected=cv2.resize(detected,(160,160))
-            detected=np.rollaxis(detected,2,0)
+           # detected=np.rollaxis(detected,2,0)
             detected=detected.astype('float')/255.0
             detected=np.expand_dims(detected,axis=0)
             feed=e.calculate(detected)
@@ -55,14 +55,14 @@ while ret:
                 for i in people:
                     if(result==i):
                         label=people[i]
-#                        if(a[i]==0):
-#                            print("a")
-#                        a[i]=1
-                        abhi=i
+                        if(a[i]==0):
+                            a[i]=1
+                            abhi=i
+                data.updateAttendance(abhi)
+#                       print("a")
             else:
                 label='unknown'
-            data.updateUser(label)
-            data.updateAttendance(abhi)
+#            data.update(label)
 
             cv2.putText(frame,label,(k[0],k[1]),cv2.FONT_HERSHEY_SIMPLEX,1,(255,255,255),2)
             if(abhi is not None):
