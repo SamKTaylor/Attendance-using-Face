@@ -12,17 +12,15 @@ class database:
         self.date=[]
 
     def updateUser(self,name):
-        self.db.pa.update_one({"name":name},{"$inc":{"attendance":1}})
+        self.db1.pa.update_one({"name":name},{"$inc":{"attendance":1}})
 
-    def updateAttendance(self,userid)
-        self.db.timesheet.insertOne({"userid":abhi},"date": datetime.datetime.now())
-
-    def clockOut(self,userid)
+    def updateAttendance(self,userid):
+        self.db2.timesheet.insertOne({"userid":abhi},{"date": datetime.datetime.now()})
 
     def view(self):
         self.name=[]
         self.attendance=[]
-        records=self.db.pa.find()
+        records=self.db1.pa.find()
         j=0
         for i in records:
             j=j+1
