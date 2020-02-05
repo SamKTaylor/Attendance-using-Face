@@ -7,8 +7,18 @@ from retreive_pymongo_data import database
 
 
 label=None
-a={0:0,1:0}
-people={0:"satinder",1:"mont"}
+# Removed old way of creating dict.
+#a={0:0,1:0}
+#people={0:"satinder",1:"mont"}
+
+# Get dict from file so you don't have to update source code for new users.
+people = {}
+with open("people.txt") as file:
+    for line in file:
+       (key, val) = line.split()
+       people[int(key)] = val
+
+
 abhi=None
 data=database()
 e=emb()
@@ -45,14 +55,14 @@ while ret:
                 for i in people:
                     if(result==i):
                         label=people[i]
-                        if(a[i]==0):
-                            print("a")
-                        a[i]=1
+#                        if(a[i]==0):
+#                            print("a")
+#                        a[i]=1
                         abhi=i
             else:
                 label='unknown'
-            data.update(label)
-
+            data.updateUser(label)
+            data.updateAttendance(abhi)
 
             cv2.putText(frame,label,(k[0],k[1]),cv2.FONT_HERSHEY_SIMPLEX,1,(255,255,255),2)
             if(abhi is not None):

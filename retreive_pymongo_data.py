@@ -3,13 +3,21 @@ import pandas as pd
 class database:
     def __init__(self):
         self.client=MongoClient()
-        self.db=self.client.new2
+        self.db1=self.client.users
         self.name=[]
         self.attendance=[]
 
-    def update(self,name):
+        self.db2=self.client.attendance
+        self.userid=[]
+        self.date=[]
+
+    def updateUser(self,name):
         self.db.pa.update_one({"name":name},{"$inc":{"attendance":1}})
 
+    def updateAttendance(self,userid)
+        self.db.timesheet.insertOne({"userid":abhi},"date": datetime.datetime.now())
+
+    def clockOut(self,userid)
 
     def view(self):
         self.name=[]
@@ -22,7 +30,6 @@ class database:
             self.attendance.append(i["attendance"])
         for i in range(j):
             print(self.name[i],self.attendance[i])
-
     def export_csv(self):
         self.view()
         data={"name":self.name,"attendance":self.attendance}
