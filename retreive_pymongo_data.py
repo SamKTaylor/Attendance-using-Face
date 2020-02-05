@@ -12,8 +12,11 @@ class database:
         self.userid=[]
         self.date=[]
 
+    def create(self,name):
+        self.db.pa.insert({"name":name, "attendance":0})
+
     def update(self,name):
-        self.db.pa.update_one({"name":name},{"$inc":{"attendance":1}})
+        self.db.pa.update({"name":name},{"$inc":{"attendance":1}})
 
     def updateAttendance(self,userid):
         self.db2.date.insert({"userid":userid, "date": datetime.datetime.now()})

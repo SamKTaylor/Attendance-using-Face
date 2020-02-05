@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import os
+from retreive_pymongo_data import database
 pic_no=0
 print('enter the name of the person for enrollment')
 name=input()
@@ -8,6 +9,7 @@ os.makedirs(name)
 fa=cv2.CascadeClassifier('faces.xml')
 cap=cv2.VideoCapture(0)
 ret=True
+
 while ret:
     ret,frame=cap.read()
     frame=cv2.flip(frame,1)
