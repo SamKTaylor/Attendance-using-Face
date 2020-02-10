@@ -12,7 +12,7 @@ label=None
 #people={0:"satinder",1:"mont"}
 # Get dict from file so you don't have to update source code for new users.
 
-a={0:0,1:0,2:0,3:0}
+a={0:0,1:0}
 people = {}
 with open("people.txt") as file:
     for line in file:
